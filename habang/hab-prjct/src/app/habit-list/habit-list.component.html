@@ -1,0 +1,21 @@
+<h2 style="color:white;margin:2%;">Welcome User !</h2>
+<div><button id="add-habit">+Add</button></div>
+<br>
+<div *ngFor="let hab of habits">
+    <div class="habit-container" (click)="WhSelect(hab)" [class.selected-hb]="hab===selectedHabit">
+         <span>{{hab.id}}.{{hab.name}}</span><br>
+         &nbsp;<span>{{hab.description}}</span>
+         <div id="habstate">{{hab.state}}</div>
+         <div id="edit-button"><button>edit</button></div>
+        </div>
+</div>
+<div *ngIf="selectedHabit">
+    <div class="detail-container">
+        <span style="color:white;"> 
+            Edit Habit {{selectedHabit.id}} Details
+        </span>
+    </div>
+    
+</div>
+
+

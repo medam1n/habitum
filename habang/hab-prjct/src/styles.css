@@ -1,0 +1,115 @@
+
+body{
+    background-color: rgb(42, 42, 42);
+}
+*{
+    font-family: Gill Sans, sans-serif;
+    display:flexbox;
+    padding:0;
+    margin:0;
+}
+app-side-bar {
+    height:100vh;
+    width:16vw;
+    padding:0.5em;
+    float:left;
+    margin-left:0;
+    background-color: rgb(31, 29, 29);
+    font-weight:bold;
+    display:flexbox;
+    overflow: hidden;
+    
+}
+ul{
+    float:left;
+    padding-left: 0;
+}
+ul li {
+    list-style-type: none;
+}
+app-side-bar ul li {
+    background-color: rgb(232, 226, 207);
+    border-radius:0.5em;
+    margin:0.5vh;
+    padding:1em;
+    width:16vw;
+    cursor:pointer;
+    transition: background-color 0.15s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+app-side-bar ul li:hover {
+    background-color: rgb(109, 182, 228);
+}
+#hab-logo{
+    font-weight: bolder;
+    color:white;
+    font-size: larger;
+}
+app-habit-list{
+    padding:10vh;
+    margin:auto;
+    display:inline-block;
+    padding:0.5em;
+    justify-content: center;
+}
+.habit-container{
+    display:block;
+    margin:1em;
+    height:1.75vh;
+    width:56vw;
+    /*background-image: linear-gradient(45deg,rgb(64, 80, 152),rgba(52, 64, 115, 0.8));*/
+    background-image: linear-gradient(45deg,rgb(234, 235, 240),rgba(226, 228, 234, 0.8));
+    background-color: rgba(106, 185, 255, 0.8);
+    border-radius: 5px;
+    font-weight:bold;
+    padding:2em;
+    color:rgb(16, 16, 16);
+    cursor:pointer;
+    transition:background-color 0.1s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.habit-container:hover{
+    background-color:blue;
+}
+#habstate {
+    float:right;
+    background-color:rgb(239, 38, 45);
+    border-radius: 3rem;
+    padding:0.5em;
+    color:rgb(245, 243, 243);
+}
+#add-habit{
+    float:right;
+    margin-right:18px;
+    padding:0.5em;
+    color: rgb(236, 235, 243);
+    background-color:rgb(68, 166, 236);
+    border:none;
+    border-radius: 0.75em;
+    display:block;
+    cursor:pointer;
+    scale:1.2;
+    transition: background-color 0.15s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#add-habit:hover{
+    background-color:rgb(108, 108, 255);
+
+}
+#edit-button{
+    position: absolute;
+    border:none;
+}
+#edit-button button{
+    border:none;
+    background-color:rgb(241, 206, 35);
+    border-radius: 5px;
+    padding:1px;
+    cursor:pointer;
+    padding-right:2px;
+    border-radius: 5px;
+}
+.selected-hb{
+    transition:background-image 0.5s;
+    background-image: linear-gradient(45deg,rgb(144, 221, 185),rgba(59, 86, 79, 0.8));
+}
