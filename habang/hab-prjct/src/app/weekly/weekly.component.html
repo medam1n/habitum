@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <p>weekly works!</p>
+    <div class="week__main">
+        <div class="week__gridRow" data-type="heading">
+           <div class="week__gridRow__heading">
+           </div>
+           <div class="week__gridRow__main">
+              <div class="week__gridRowItem" data-type="heading">Mon</div>
+              <div class="week__gridRowItem" data-type="heading">Tue</div>
+              <div class="week__gridRowItem" data-type="heading">Wed</div>
+              <div class="week__gridRowItem" data-type="heading">Thu</div>
+              <div class="week__gridRowItem" data-type="heading">Fri</div>
+              <div class="week__gridRowItem" data-type="heading">Sat</div>
+              <div class="week__gridRowItem" data-type="heading">Sun</div>
+           </div>
+           <div class="week__gridRow__end"></div>
+        </div>
+        <div class="week__gridRow" *ngFor="let hab of habits">
+           <div class="week__gridRow__heading"></div>
+              <div class="color-indicator" style="background-color: rgb(255, 160, 49);"></div>
+              <span class="week__gridRow__name">{{hab.name}}</span>
+              <div class="week__gridRow__main">
+                 <div class="week__gridRowItem"  *ngFor="let x of daysofweek" [class.checked-day]="checkdate(hab,daysofweek.indexOf(x))"></div>
+                 <!--<div class="week__gridRowItem"></div>
+                 <div class="week__gridRowItem"></div>
+                 <div class="week__gridRowItem"></div>
+                 <div class="week__gridRowItem"></div>
+                 <div class="week__gridRowItem"></div>
+                 <div class="week__gridRowItem"></div>
+                *ngFor="let _ of [].constructor(7)"-->
+              </div>
+              <div class="week__gridRow__end">0 / 0</div>
+           </div>
+           </div>
+</html>

@@ -1,21 +1,230 @@
-<h2 style="color:white;margin:2%;">Welcome User !</h2>
-<div><button id="add-habit">+Add</button></div>
+<!--<div class="alert alert-success" *ngIf="barate==100" role="alert">
+   You're Done For Today !
+ </div>-->
+ <div class="alert alert-warning alert-dismissible fade show" style="position: fixed;" *ngIf="barate==100" role="alert">
+   <strong>Well Done!</strong> We're Done For Today.
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+<div id="main-container">
+   <!--<h1 style="color:white;">{{date | date:'HH:mm' }}</h1>-->
+   <h2 style="color:white;margin:2%;">Welcome User !</h2>
+   <div class="date-range-select">
+     <ul>
+        <li class="active"><a routerLink="\weekly">Week</a></li>
+        <li class="">Month</li>
+        <li class="">Year</li>
+        <li class="">All Time</li>
+     </ul>
+  </div>
+
 <br>
-<div *ngFor="let hab of habits">
-    <div class="habit-container" (click)="WhSelect(hab)" [class.selected-hb]="hab===selectedHabit">
-         <span>{{hab.id}}.{{hab.name}}</span><br>
-         &nbsp;<span>{{hab.description}}</span>
-         <div id="habstate">{{hab.state}}</div>
-         <div id="edit-button"><button>edit</button></div>
+<div style="overflow: hidden;width:40vw;height:2.5vh;border-radius:50px;background-color:rgb(255,255,250);margin-right: 0px;margin-left: 0px;box-sizing: border-box;margin:0px;">
+   <div class="progress-bar" style="height:2.5vh;border-radius: 50px;" [ngStyle]="{width:barate +'%'}"><span>{{barate | number: '2.0-0'}}%Completion</span>
+
+   </div>
+</div>
+<span *ngIf="barate==100" style="color:white;display:flex;"> </span>
+
+<!--  -->
+
+<div class="week__main">
+   <div class="week__gridRow" data-type="heading">
+      <div class="week__gridRow__heading">
+      </div>
+      <div class="week__gridRow__main">
+         <div class="week__gridRowItem" data-type="heading">Mon</div>
+         <div class="week__gridRowItem" data-type="heading">Tue</div>
+         <div class="week__gridRowItem" data-type="heading">Wed</div>
+         <div class="week__gridRowItem" data-type="heading">Thu</div>
+         <div class="week__gridRowItem" data-type="heading">Fri</div>
+         <div class="week__gridRowItem" data-type="heading">Sat</div>
+         <div class="week__gridRowItem" data-type="heading">Sun</div>
+      </div>
+      <div class="week__gridRow__end"></div>
+   </div>
+   <div class="week__gridRow" *ngFor="let hab of habits">
+      <div class="week__gridRow__heading">
+         <div class="color-indicator" style="background-color: rgb(255, 160, 49);"></div>
+         <span class="week__gridRow__name">{{hab.name}}</span>
+      </div>
+         
+         <div class="week__gridRow__main">
+            <div class="week__gridRowItem"  *ngFor="let x of daysofweek" [class.checked-day]="checkdate(hab,daysofweek.indexOf(x)+1)"></div>
+            <!--<div class="week__gridRowItem"></div>
+            <div class="week__gridRowItem"></div>
+            <div class="week__gridRowItem"></div>
+            <div class="week__gridRowItem"></div>
+            <div class="week__gridRowItem"></div>
+            <div class="week__gridRowItem"></div>
+           *ngFor="let _ of [].constructor(7)"-->
+         </div>
+         <div class="week__gridRow__end">{{countdone(hab)}} / 0</div>
+      </div>
+      </div>
+      
+
+<!-- -->
+
+<div style="float:right;" class="main-habit-container">
+   <h2 style="color:white;">{{date | date:'EEEE, MMMM d' }}</h2>
+   <div class="upper-habit-container">
+   
+      <!--addButton-->
+      <div class="add-button-container">
+         <button (click)="onOpenModal(null,'add')"id="add-habit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+       </svg> 
+            <span>Add Habit</span>
+       </button>
+       </div>
+       <!---->
+      <div *ngFor="let hab of habits">
+         <div *ngIf="hab.state==='to avoid'" id="habstate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+         </div>
+         <div *ngIf="hab.state==='to do'" id="habstate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+               <circle cx="8" cy="8" r="8"/>
+             </svg>
+         </div>
+         <div class="habit-container" (click)="WhSelect(hab)" [class.selected-hb]="hab===selectedHabit" [class.done-hb]="habindone(hab)"><!--[class.done-hb]="habindone(hab)"-->
+              <span style="font-size:x-large">{{hab.name}}</span><br>
+              &nbsp;<span>{{hab.description}}</span>
+              
+              <!--<div (click)="onOpenModal(null,'edit')" id="edit-button"><button>edit</button></div>-->
+              <!--<div (click)="onOpenModal(null,'delete')" id="delete-button"><button>delete</button></div>-->
+              <div (click)="onOpenModal(hab,'delete')" id="delete-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+               </svg> </div>
+               <div *ngIf="hab.state==='to avoid'" class="done-bt"><button onClick="this.disabled=true;" (click)="setdone(hab)" >Mark as avoided</button></div>
+               <div *ngIf="hab.state==='to do'" class="done-bt"><button onClick="this.disabled=true;" (click)="setdone(hab)">Mark as done</button></div>
+               
+      </div>
+               
+      </div>
+   </div>
+</div>
+
+
+
+<!--<div *ngIf="selectedHabit && selectedHabit.description">
+   <div class="detail-container">
+       <span style="color:white;"> 
+           Habit Details Description <br>
+              {{selectedHabit.description}}
+       </span>
+   </div>
+</div>-->
+   <!-- Add Habit Modal -->
+<div class="modal fade" id="addHabitModal" tabindex="-1" role="dialog" aria-labelledby="addHabitModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="addHabitModalLabel">Add Habit</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
         </div>
+        <div class="modal-body">
+           <form #addForm="ngForm" (ngSubmit)="onAddHabit(addForm)">
+           <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+           </div>
+           <div class="form-group">
+              <label for="Description">Description</label>
+              <input type="Description" ngModel name="description" class="form-control" id="description" placeholder="Description">
+           </div>
+           <div class="form-group">
+              <label for="state">Set State</label>
+              <!--<input type="text" ngModel name="state" class="form-control" id="state" placeholder="state" required>-->
+              <select ngModel name="state" class="form-select form-select-lg mb-3" id="state" value="To do"  required>
+                 <option selected value="to do">To do</option>
+                 <option value="to avoid">To avoid</option>
+              </select>
+           </div>
+           <div class="modal-footer">
+              <button type="button" id="add-habit-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+           </div>
+           </form>
+        </div>
+     </div>
+   </div>
+   </div>
+   <!-- delete habit -->
+   <div class="modal fade" id="deleteHabitModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title" id="deleteModelLabel">Delete Habit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+             <div class="modal-body">
+                <p>Are you sure?</p>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                   <button (click)="onDeleteHabit(deleteHabit?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                </div>
+             </div>
+          </div>
+       </div>
+     </div>
+     <!---->
+
+
+
+
+
+<!--
+   <div class="month_main">
+   <div class="month__calendar">
+       <div class="month__calendarHeader">Mon</div>
+       <div class="month__calendarHeader">Tue</div>
+       <div class="month__calendarHeader">Wed</div>
+       <div class="month__calendarHeader">Thu</div>
+       <div class="month__calendarHeader">Fri</div>
+       <div class="month__calendarHeader">Sat</div>
+       <div class="month__calendarHeader">Sun</div>
+       <div class="month__calendarItem" *ngFor="let _ of [].constructor(30)"></div> 
+   </div>
 </div>
-<div *ngIf="selectedHabit">
-    <div class="detail-container">
-        <span style="color:white;"> 
-            Edit Habit {{selectedHabit.id}} Details
-        </span>
-    </div>
-    
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---->
 </div>
+   
+
 
 

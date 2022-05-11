@@ -2,11 +2,42 @@ type habstate = 'to avoid'|'to do';
 export interface Habit {
     id:number;
     name:string;
-    state:habstate;
+    state:string;
     description:string;
+    date:Date;
 
 }
-export const habits =[
+export interface Done extends Habit {
+    datedone:Date;
+
+}
+export const daysOfTheWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ] as const;
+  export type DayOfTheWeek = typeof daysOfTheWeek[number];
+  
+  export const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ] as const;
+  export type Month = typeof months[number];
+/*export const habits =[
     {
         id :1,
         name : "smoking",
@@ -31,4 +62,4 @@ export const habits =[
         state :'to do' as habstate,
         description:''
     }
-];
+];*/

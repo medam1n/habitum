@@ -1,24 +1,73 @@
 
+@font-face {
+	font-family: 'proxima_nova_rgregular';
+	src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot');
+	src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.woff') format('woff'),
+		 url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.ttf') format('truetype'),
+		 url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'proxima_nova_rgbold';
+	src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
+	src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff') format('woff'),
+		 url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.ttf') format('truetype'),
+		 url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'adelle_rgregular';
+	src: url('https://litmus.com/fonts/Emails/adelle_reg-webfont.eot');
+	src: url('https://litmus.com/fonts/Emails/adelle_reg-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('https://litmus.com/fonts/Emails/adelle_reg-webfont.woff') format('woff'),
+		 url('https://litmus.com/fonts/Emails/adelle_reg-webfont.ttf') format('truetype'),
+		 url('https://litmus.com/fonts/Emails/adelle_reg-webfont.svg#adelle_rgregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 body{
+    -webkit-font-smoothing: antialiased;
     background-color: rgb(42, 42, 42);
+    --color-text-1:rgb(240,240,240);
+    --color-1:rgb(235, 79, 79);
+    --color-2:rgb(150,150,255);
+    --color-3:rgb(241, 241, 79);
+    --color-4:rgb(150,225,255);
+    --color-5:rgb(120,150,255);
+    --color-side:rgb(31, 29, 29);
 }
 *{
-    font-family: Gill Sans, sans-serif;
+    /*font-family: Gill Sans, sans-serif;*/
+    font-family: 'proxima_nova_rgregular',"Helvetica Neue","Roboto",sans-serif;
     display:flexbox;
     padding:0;
     margin:0;
+    box-sizing: border-box;
 }
 app-side-bar {
-    height:100vh;
-    width:16vw;
-    padding:0.5em;
+    font-family:'proxima_nova_rgbold';
+    height:9vh;
+    width:100vw;
+    padding:1em;
     float:left;
     margin-left:0;
-    background-color: rgb(31, 29, 29);
-    font-weight:bold;
-    display:flexbox;
+    /*background-color: var(--color-side);*/
+    background-color: var(--color-text-1);
+    font-weight:bolder;
+    display:inline-block;
     overflow: hidden;
+    position:relative;
     
+}
+.profile-icon{
+    display:inline-block;
+    float:right;
+    margin:auto;
 }
 ul{
     float:left;
@@ -28,11 +77,12 @@ ul li {
     list-style-type: none;
 }
 app-side-bar ul li {
-    background-color: rgb(232, 226, 207);
+    background-color: var(--color-2);
+    color:var(--color-text-1);
     border-radius:0.5em;
     margin:0.5vh;
     padding:1em;
-    width:16vw;
+    width:20vw;
     cursor:pointer;
     transition: background-color 0.15s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -42,45 +92,118 @@ app-side-bar ul li:hover {
 }
 #hab-logo{
     font-weight: bolder;
-    color:white;
-    font-size: larger;
+    color:rgb(0, 0, 0);
+    font-size: 50px;
+    /*transform: scale(1.5);*/
+    margin:1px;
+    width:20vw;
 }
 app-habit-list{
     padding:10vh;
     margin:auto;
     display:inline-block;
-    padding:0.5em;
+    padding:3em;
     justify-content: center;
+    width: 100vw;
+    position:relative;
+}
+#main_container{
+    display:grid;
+}
+.upper-habit-container{
+    display:grid;
+    height:auto;
+    float:right;
+    margin:auto;
+    background-color:rgb(112, 128, 140);
+    border-radius: 15px;
+    width:30vw;
+    padding:5px;
+    border-style: solid;
+    border-color:rgb(174, 179, 184);
+    border-width: 1px;
+    /*display:grid;*/
 }
 .habit-container{
-    display:block;
+    box-sizing: border-box;
+    display:inline-block;
     margin:1em;
-    height:1.75vh;
-    width:56vw;
+    /*height:1.75vh;*/
+    width:25vw;
+    /*height:5vh;*/
+    position: relative;
     /*background-image: linear-gradient(45deg,rgb(64, 80, 152),rgba(52, 64, 115, 0.8));*/
-    background-image: linear-gradient(45deg,rgb(234, 235, 240),rgba(226, 228, 234, 0.8));
-    background-color: rgba(106, 185, 255, 0.8);
-    border-radius: 5px;
+    background-image: linear-gradient(45deg,rgb(237, 239, 244),rgba(226, 228, 234, 0.8));
+    background-color: rgba(153, 199, 238, 0.8);
+    border-radius: 15px;
     font-weight:bold;
-    padding:2em;
+    padding:1em;
     color:rgb(16, 16, 16);
-    cursor:pointer;
-    transition:background-color 0.1s;
-    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    /*cursor:pointer;*/
+    /*overflow: auto;*/
+    transition:all 0.3s;
+    /*transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
+    transition-timing-function: ease;
+    /*border-style:solid;
+    border-width: 1px;*/
 }
 .habit-container:hover{
     background-color:blue;
+    /*border-color: beige;*/
+    /*border-style: solid;*/
+    /*border-width: 2px;*/
+}
+.done-hb{
+    color:grey;
+    background-color: grey;
+}
+/*.done-hb .done-bt{
+    background-color: #4d5560;
+}*/
+.done-hb #habstat{
+    color:rgb(82, 82, 82);
+    background-color: grey;
+}
+.done-hb #habstat button{
+    color:rgb(82, 82, 82);
+    background-color: grey;
+}
+.done-bt{
+    display: flex;
+    border:none;
+    height:5vh;
+    margin:auto;
+    justify-content: center;
+    width:10em;
+    
+}
+.done-bt button{
+    border:none;
+    background-color:rgba(250, 250, 250,100);
+    border-radius: 30px;
+    border-style: solid;
+    border-color: rgb(44, 89, 212);
+    color:rgb(44, 89, 212);
+    font-weight: bold;
+    cursor:pointer;
+    width:10em;
 }
 #habstate {
-    float:right;
+    display: inline-block;
+    float:left;
     background-color:rgb(239, 38, 45);
     border-radius: 3rem;
     padding:0.5em;
     color:rgb(245, 243, 243);
+    margin:5px;
+}
+.add-button-container{
+    margin:5px;
 }
 #add-habit{
     float:right;
     margin-right:18px;
+    margin-bottom: 10px;;
     padding:0.5em;
     color: rgb(236, 235, 243);
     background-color:rgb(68, 166, 236);
@@ -89,15 +212,17 @@ app-habit-list{
     display:block;
     cursor:pointer;
     scale:1.2;
-    transition: background-color 0.15s;
-    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.15s;
+    /*transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
+    transition-timing-function: ease;
 }
 #add-habit:hover{
-    background-color:rgb(108, 108, 255);
+    background-color:rgb(164, 164, 243);
+    box-shadow: rgba(108, 108, 255,60) 0px 0px 20px;
 
 }
 #edit-button{
-    position: absolute;
+    display: inline-block;
     border:none;
 }
 #edit-button button{
@@ -111,5 +236,170 @@ app-habit-list{
 }
 .selected-hb{
     transition:background-image 0.5s;
-    background-image: linear-gradient(45deg,rgb(144, 221, 185),rgba(59, 86, 79, 0.8));
+    background-image: linear-gradient(45deg,rgb(180, 229, 206),rgba(129, 174, 162, 0.8));
+    /*border-style: solid;
+    border-color: rgb(207, 216, 222);*/
+}
+#delete-button{
+    position:absolute;
+    border:none;
+    cursor: pointer;
+}
+#delete-button button{
+    border:none;
+    background-color:rgb(241, 69, 35);
+    border-radius: 5px;
+    padding:1px;
+    cursor:pointer;
+    padding-right:1px;
+}
+.date-range-select ul{
+    background-color: var(--color-text-1);
+    font-weight: bolder;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(4,1fr);
+    border-radius: 100px;
+    padding:6px;
+}
+.date-range-select ul li{
+    justify-content: center;
+    display: flex;
+    padding:2px;
+    transition:all 0.1s;
+    transition-timing-function: ease;
+    cursor:pointer;
+}
+.date-range-select ul li:hover{
+    background-color:var(--color-3);
+    /*background-color:rgb(220, 223, 224);*/
+    border-radius: 50px;
+}
+.date-range-select {
+    width:25vw;
+    height:5vh;
+    
+}
+.progress-bar{
+    box-sizing: border-box;
+    background-color: var(--color-1);
+    font-weight: bolder;
+    width:40vw;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.week__main{
+    box-sizing: border-box;
+    width:40vw;
+    color:rgb(0, 0, 0);
+    background-color: rgb(232, 234, 241);
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: antiquewhite;
+    padding:10px;
+    margin: 6px 7px -320px 0px;
+   
+}
+.week__gridRow {
+    display: grid;
+    grid-template-columns: 180px 1fr 80px;
+    grid-template-areas: "heading grid summary";
+    height: 60px;
+    align-items: center;
+}
+.week__gridRow__main {
+    grid-area: grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.week__gridRowItem{
+border-style: solid;
+border-color: rgb(255, 255, 255);
+border-width: 1px;
+border-radius: 10px;
+width:3vw;
+padding:5px;
+
+}
+.week__gridRow__heading span {
+    line-height: 1.2em;
+    margin-left: 25px;
+    color: #4d5560;
+    width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.color-indicator {
+    height: 15px;
+    width: 15px;
+    border-radius: 15px;
+}
+.week__gridRow__heading span {
+    line-height: 1.2em;
+    margin-left: 25px;
+    color: #4d5560;
+    font-weight: bolder;
+    width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.checked-day{
+    background-color: var(--color-5);
+}
+a:*{
+    text-decoration: none;
+}
+.week__gridRow__heading {
+    grid-area: heading;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.month__calendar {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    margin-top: 25px;
+    border-top: 1px solid #bed1ed;
+    border-right: 1px solid #bed1ed;
+}
+.month__calendarItem {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-left: 1px solid #bed1ed;
+    border-bottom: 1px
+ solid #bed1ed;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    color: #bed1ed;
+}
+.month__main {
+    padding-top: 25px;
+    width:40vw;
+}
+.month__calendar .month__calendarHeader {
+    padding: 10px 0;
+    border-bottom: 1px solid #bed1ed;
+    text-transform: uppercase;
+    color: #007bff;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.month__calendar .month__calendarHeader:first-child {
+    border-left: 1px solid #bed1ed;
+    color:white;
+}
+.main-habit-container{
+    display:grid;
 }
